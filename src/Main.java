@@ -174,8 +174,6 @@ public class Main {
         
         for (int i = 0; i < arrCostoInsumos.length; i++) {
             arrCostoInsumos[i] = (double)arrInsumos[i] * costoInsumos[i];
-        }
-        for (int i = 0; i < arrCostoInsumos.length; i++) {
             System.out.println("Costo total Insumo#" + (i + 1) + ": " + arrCostoInsumos[i]);
         }
         System.out.println("Saliendo del método...");
@@ -184,8 +182,8 @@ public class Main {
 
     public static double costoTotalInsumosMes(double[] costoInsumos) {
         double totalPedidosMes = 0;
-        for (double costoInsumo : costoInsumos) {
-            totalPedidosMes = totalPedidosMes + costoInsumo;
+        for (double costo : costoInsumos) {
+            totalPedidosMes = totalPedidosMes + costo;
         }
 
         System.out.println("El total de costo de todos los insumos para los pedidos del mes es:"
