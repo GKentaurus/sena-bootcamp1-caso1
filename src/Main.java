@@ -52,13 +52,13 @@ public class Main {
                     for (int i = 0; i < m; i++) {
                         pedidosMesMotores[i] = (int) (Math.random() * 100);
                         for (int j = 0; j < n; j++) {
-                            matrizMotoresInsumos[i][j] = (int) (Math.random() * 10);
+                            matrizMotoresInsumos[i][j] = (int) (Math.random() * 100);
                         }
                     }
 
                     for (int i = 0; i < n; i++) {
                         costoInsumos[i] = Math.random() * 1;
-                        existenciaInsumos[i] = (int) (Math.random() * 10);
+                        existenciaInsumos[i] = (int) (Math.random() * 100);
                     }
                     System.out.println("\nMatrices  y arreglos llenados!");
                     continuar = false;
@@ -100,10 +100,26 @@ public class Main {
         } while (continuar);
 
         /**
-         * Imprimiendo matriz
+         * Imprimiendo matrices y arreglos
          */
         System.out.println("\n*************************************************\n");
+        System.out.println("Imprimiendo Matriz Motores Insumos");
         imprimirMatriz(matrizMotoresInsumos);
+        pausa();
+
+        System.out.println("\n*************************************************\n");
+        System.out.println("Imprimiendo Costo de Insumos");
+        imprimirArregloDouble(costoInsumos, "Costo de Insumos");
+        pausa();
+
+        System.out.println("\n*************************************************\n");
+        System.out.println("Imprimiendo Pedidos Mensuales");
+        imprimirArregloInt(pedidosMesMotores, "Pedidos Mensuales");
+        pausa();
+
+        System.out.println("\n*************************************************\n");
+        System.out.println("Imprimiendo Existencias de Insumos");
+        imprimirArregloInt(existenciaInsumos, "Existencias de Insumos");
         pausa();
 
         /**
@@ -154,28 +170,42 @@ public class Main {
         input.close();
     }
 
-    public static void imprimirMatriz(int[][] matrizMotoresInsumos) {
+    public static void imprimirMatriz(int[][] matriz) {
         String[] ejeVertical = {"M","O","T","O","R","E","S"};
         String ejeHorizontal = "INSUMOS\n\n";
         System.out.println("\t" + ejeHorizontal);
-        for (int i = 0; i < matrizMotoresInsumos.length; i++) {
-            if (matrizMotoresInsumos.length == 5) {
+        for (int i = 0; i < matriz.length; i++) {
+            if (matriz.length == 5) {
                 System.out.print(ejeVertical[i]+"\t");
-            } else if(matrizMotoresInsumos.length == 6 && i < 5) {
+            } else if(matriz.length == 6 && i < 5) {
                 System.out.print(ejeVertical[i]+"\t");
-            } else if(matrizMotoresInsumos.length >= 7 & i < 7) {
+            } else if(matriz.length >= 7 & i < 7) {
                 System.out.print(ejeVertical[i]+"\t");
             } else {
                 System.out.print("\t");
             }
 
-            if (matrizMotoresInsumos.length == 5 || matrizMotoresInsumos.length >= 7) {
+            if (matriz.length == 5 || matriz.length >= 7) {
                 
             }
-            for (int j = 0; j < matrizMotoresInsumos[i].length; j++) {
-                System.out.print(matrizMotoresInsumos[i][j] + " ");
+            for (int j = 0; j < matriz[i].length; j++) {
+                System.out.print(matriz[i][j] + " ");
             }
             System.out.println("");
+        }
+    }
+
+    public static void imprimirArregloInt(int[] arreglo, String titulo) {
+        System.out.println(titulo + "\n");
+        for (int i = 0; i < arreglo.length; i++) {
+            System.out.print("Elemento # " + (i+1) + ": " +arreglo[i] + "\n");
+        }
+    }
+
+    public static void imprimirArregloDouble(double[] arreglo, String titulo) {
+        System.out.println(titulo + "\n");
+        for (int i = 0; i < arreglo.length; i++) {
+            System.out.print("Elemento # " + (i+1) + ": " +arreglo[i] + "\n");
         }
     }
 
