@@ -1,5 +1,4 @@
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -12,16 +11,19 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        cls();
         Scanner input = new Scanner(System.in);
 
         /**
          * Definición de tamaños de motor/insumos
          */
-        // Numeral A:
+        System.out.println("*** Definiendo tamaño de la matriz de Motores/Insumos ***\n");
+
+        // Numeral 1:
         System.out.print("Ingrese la cantidad de motores que fabricará: ");
         int m = input.nextInt();
 
-        //Numeral B:
+        //Numeral 2:
         System.out.print("Ingrese la cantidad de insumos para fabricar motores: ");
         int n = input.nextInt();
 
@@ -32,6 +34,8 @@ public class Main {
         double costoInsumos[] = new double[n];
         int pedidosMesMotores[] = new int[m];
         int existenciaInsumos[] = new int[n];
+
+        cls();
 
         System.out.print("¿Desea que el sistema llene automáticamente los arreglos? "
                 + "\n\t1. Si."
@@ -44,7 +48,7 @@ public class Main {
         do {
             switch (opcion) {
                 case 1:
-                    System.out.println("Llenando matrices...");
+                    System.out.println("\nLlenando matrices...");
                     for (int i = 0; i < m; i++) {
                         pedidosMesMotores[i] = (int) (Math.random() * 100);
                         for (int j = 0; j < n; j++) {
@@ -56,7 +60,7 @@ public class Main {
                         costoInsumos[i] = Math.random() * 1;
                         existenciaInsumos[i] = (int) (Math.random() * 10);
                     }
-                    System.out.println("Matrices  y arreglos llenados!");
+                    System.out.println("\nMatrices  y arreglos llenados!");
                     continuar = false;
                     break;
                 case 2:
@@ -93,8 +97,14 @@ public class Main {
                     System.out.println("Ingrese una opción válida.");
                     break;
             }
-            System.out.println("*************************************************\n");
         } while (continuar);
+
+        /**
+         * Imprimiendo matriz
+         */
+        System.out.println("\n*************************************************\n");
+        imprimirMatriz(matrizMotoresInsumos);
+        pausa();
 
         /**
          * Numeral G: Obtener e imprimir un arreglo de m elementos, con el costo
@@ -102,31 +112,35 @@ public class Main {
          * motor consiste en sumar el producto de insumos necesarios por el
          * costo unitario de cada insumo.
          */
-        costoProduccionMotor(matrizMotoresInsumos, costoInsumos);
         System.out.println("*************************************************\n");
+        costoProduccionMotor(matrizMotoresInsumos, costoInsumos);
+        pausa();
 
         /**
          * Numeral H: Obtener e imprimir un arreglo de n elementos, con la
          * cantidad de unidades de cada insumo, necesaria para cumplir con los
          * pedidos del mes.
          */
-        int[] arrInsumos = insumosNecesariosPedidosMes(matrizMotoresInsumos, pedidosMesMotores);
         System.out.println("*************************************************\n");
+        int[] arrInsumos = insumosNecesariosPedidosMes(matrizMotoresInsumos, pedidosMesMotores);
+        pausa();
 
         /**
          * Numeral I: Obtener e imprimir un arreglo de n elementos, cuyos datos
          * indiquen cuál es el costo total por concepto de cada insumo para
          * cumplir con los pedidos del mes.
          */
-        double[] arrCostoInsumos = costoInsumosPedidosMes(arrInsumos, costoInsumos);
         System.out.println("*************************************************\n");
+        double[] arrCostoInsumos = costoInsumosPedidosMes(arrInsumos, costoInsumos);
+        pausa();
 
         /**
          * Numeral J: Obtenga e imprima el costo total (tomando en cuenta todos
          * los insumos) para cumplir con la producción del mes.
          */
-        costoTotalInsumosMes(arrCostoInsumos);
         System.out.println("*************************************************\n");
+        costoTotalInsumosMes(arrCostoInsumos);
+        pausa();
 
         /**
          * Numeral K: Obtenga e imprima un arreglo de n elementos, con la
@@ -134,8 +148,35 @@ public class Main {
          * los insumos existentes en la planta, con el fin de poder surtir
          * dichos insumos a tiempo.
          */
-        diferenciaInsumosNecesariosExistencia(arrInsumos, existenciaInsumos);
         System.out.println("*************************************************\n");
+        diferenciaInsumosNecesariosExistencia(arrInsumos, existenciaInsumos);
+        pausa();
+        input.close();
+    }
+
+    public static void imprimirMatriz(int[][] matrizMotoresInsumos) {
+        String[] ejeVertical = {"M","O","T","O","R","E","S"};
+        String ejeHorizontal = "INSUMOS\n\n";
+        System.out.println("\t" + ejeHorizontal);
+        for (int i = 0; i < matrizMotoresInsumos.length; i++) {
+            if (matrizMotoresInsumos.length == 5) {
+                System.out.print(ejeVertical[i]+"\t");
+            } else if(matrizMotoresInsumos.length == 6 && i < 5) {
+                System.out.print(ejeVertical[i]+"\t");
+            } else if(matrizMotoresInsumos.length >= 7 & i < 7) {
+                System.out.print(ejeVertical[i]+"\t");
+            } else {
+                System.out.print("\t");
+            }
+
+            if (matrizMotoresInsumos.length == 5 || matrizMotoresInsumos.length >= 7) {
+                
+            }
+            for (int j = 0; j < matrizMotoresInsumos[i].length; j++) {
+                System.out.print(matrizMotoresInsumos[i][j] + " ");
+            }
+            System.out.println("");
+        }
     }
 
     public static void costoProduccionMotor(int[][] matrizMotoresInsumos, double[] costoInsumos) {
@@ -162,7 +203,7 @@ public class Main {
         }
 
         for (int i = 0; i < arrInsumos.length; i++) {
-            System.out.println("Insumo#" + (i + 1) + ": " + arrInsumos[i]);
+            System.out.println("Insumo # " + (i + 1) + ": " + arrInsumos[i]);
         }
         System.out.println("Saliendo del método...");
         return arrInsumos;
@@ -174,7 +215,7 @@ public class Main {
         
         for (int i = 0; i < arrCostoInsumos.length; i++) {
             arrCostoInsumos[i] = (double)arrInsumos[i] * costoInsumos[i];
-            System.out.println("Costo total Insumo#" + (i + 1) + ": " + arrCostoInsumos[i]);
+            System.out.println("Costo total Insumo # " + (i + 1) + ": " + arrCostoInsumos[i]);
         }
         System.out.println("Saliendo del método...");
         return arrCostoInsumos;
@@ -200,5 +241,15 @@ public class Main {
             System.out.println("Insumo# "+(i+1) + ": " + arrDiferencias[i]);
         }
         System.out.println("Saliendo del método...");
+    }
+
+    public static void cls() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
+    public static void pausa() {
+        System.out.println("\nPresione una tecla para continuar...");
+        new Scanner(System.in).nextLine();
     }
 }
