@@ -1,7 +1,7 @@
 # BootCamp SENA para ADSI Fase 2
 **Desarrollo del Bootcamp organizado el 1 de Agosto de 2020**
 
-Proyecto desarrollado por *@GKentaurus*, *@Dannychan94* y *Veronica* (que no tiene GitHub aún).
+Proyecto desarrollado por *@GKentaurus*, *@Dannychan94* y *@VeRock87*.
 
 ## Caso 1:
 
